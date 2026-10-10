@@ -24,7 +24,8 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        //
+        //non serve passare dati
+        return view('admin.categories.create');
     }
 
     /**
@@ -32,7 +33,17 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //inserisco i dati della request in un array
+        $data = $request->all();
+        //creo una nuova categoria con i dati della request
+        $newCategory = new Category();
+        $newCategory->name = $data['name'];
+        $newCategory->color = $data['color'];
+        $newCategory->description = $data['description'];
+        $newCategory->save();
+        //ritorno alla pagina delle categorie con un messaggio di successo
+        return redirect()->route('admin.categories.index')->with('message', 'Categoria creata con successo');
+    
     }
 
     /**

@@ -2,9 +2,10 @@
 @section('content')
 
 <h1>Categorie</h1>
-{{-- creiamo la tabella per stampare le categorie con il loro nome, colore associato e descrizione --}}
 
-<table class="table">
+<a href="{{ route('admin.categories.create') }}" class="btn btn-sm btn-primary">Crea Nuova Categoria</a>
+{{-- creiamo la tabella per stampare le categorie con il loro nome, colore associato e descrizione --}}
+<table class="table" >
     <thead>
         <tr>
             <th scope="col">Nome</th>
