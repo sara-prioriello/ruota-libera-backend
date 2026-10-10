@@ -40,7 +40,8 @@ class CategoryController extends Controller
      */
     public function show(Category $category)
     {
-        //
+        //mostriamo la categoria selezionata
+        return view('admin.categories.show', compact('category'));
     }
 
     /**
