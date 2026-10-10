@@ -24,6 +24,7 @@ class DatabaseSeeder extends Seeder
             BrandsTableSeeder::class,
             CategoriesTableSeeder::class,
             FeaturesTableSeeder::class,
+            BikesTableSeeder::class
         ]);
     }
 }
