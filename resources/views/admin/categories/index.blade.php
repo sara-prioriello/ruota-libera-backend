@@ -1,0 +1,29 @@
+@extends('layouts.app')
+@section('content')
+
+<h1>Categorie</h1>
+{{-- creiamo la tabella per stampare le categorie con il loro nome, colore associato e descrizione --}}
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Nome</th>
+            <th scope="col">Colore</th>
+            <th scope="col">Descrizione</th>
+        </tr>
+    </thead>
+    <tbody>
+         @foreach ($categories as $category)
+            <tr>
+                <td>{{ $category->name }}</td>
+                <td><span class="badge" style="background-color: {{ $category->color }}; width: 24px; height: 24px;"></span></td>
+                <td>{{ $category->description }}</td>
+            </tr>
+         @endforeach
+    </tbody>
+           
+  
+</table>
+    
+
+@endsection
