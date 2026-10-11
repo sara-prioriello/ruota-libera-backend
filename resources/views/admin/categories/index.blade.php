@@ -20,7 +20,9 @@
                 <td>{{ $category->name }}</td>
                 <td><span class="d-inline-block rounded" style="background-color: {{ $category->color }};width: 24px; height: 24px;"></span></td>
                 <td>{{ $category->description }}</td>
-                <td><a class="btn btn-sm btn-primary" href="{{ route('admin.categories.show', $category) }}">Visualizza</a></td>
+                <td><a class="btn btn-sm btn-primary" href="{{ route('admin.categories.show', $category) }}">Visualizza</a>
+                    <a class="btn btn-sm btn-warning" href="{{ route('admin.categories.edit', $category) }}">Modifica</a>
+                </td>
             </tr>
          @endforeach
     </tbody>

@@ -60,7 +60,7 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
-        //
+        return view('admin.categories.edit', compact('category'));
     }
 
     /**
@@ -68,7 +68,12 @@ class CategoryController extends Controller
      */
     public function update(Request $request, Category $category)
     {
-        //
+        $data = $request->all();
+        $category->name = $data['name'];
+        $category->color = $data['color'];
+        $category->description = $data['description'];
+        $category->save();
+        return redirect()->route('admin.categories.index')->with('message', 'Categoria modificata con successo');
     }
 
     /**
