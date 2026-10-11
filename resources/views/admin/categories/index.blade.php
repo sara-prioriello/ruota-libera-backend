@@ -22,6 +22,11 @@
                 <td>{{ $category->description }}</td>
                 <td><a class="btn btn-sm btn-primary" href="{{ route('admin.categories.show', $category) }}">Visualizza</a>
                     <a class="btn btn-sm btn-warning" href="{{ route('admin.categories.edit', $category) }}">Modifica</a>
+                    <form action="{{ route('admin.categories.destroy', $category) }}" method="POST" class="d-inline" onsubmit="return confirm('Sei sicuro di voler eliminare questa categoria?')">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn btn-sm btn-danger">Elimina</button>
+                    </form>
                 </td>
             </tr>
          @endforeach
