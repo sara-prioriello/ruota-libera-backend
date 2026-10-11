@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\BikeController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -24,7 +25,10 @@ Route::middleware(['auth','verified'])
     ->prefix('admin')
     ->group(function (){
     Route::resource('categories', CategoryController::class);
+    Route::resource('bikes', BikeController::class);
 
-    });
+});
+
+
 
 require __DIR__.'/auth.php';
