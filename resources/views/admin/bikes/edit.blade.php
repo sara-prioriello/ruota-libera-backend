@@ -1,9 +1,22 @@
 @extends('layouts.app')
 @section('content')
     <h1>Modifica bici</h1>
-    <form action="{{ route('admin.bikes.update', $bike->id) }}" method='POST' >
+    <form action="{{ route('admin.bikes.update', $bike->id) }}" method='POST' enctype="multipart/form-data">
         @csrf
         @method('PUT')
+        @if ($bike->image)
+            <div class="mb-3">
+                <label for="current_image" class="form-label">Immagine attuale</label>
+                <div>
+                    <img src="{{ asset('storage/' . $bike->image) }}" alt="{{ $bike->name }}" style="max-width: 200px;">
+                </div>
+            </div>
+        @endif
+        <div class="mb-3">
+            <label for="image" class="form-label">Immagine</label>
+            <input type="file" class="form-control" id="image" name="image" >
+
+        </div>
         <div class="mb-3">
             <label for="name" class="form-label">Nome</label>
             <input type="text" class="form-control" id="name" name="name" value = "{{$bike->name}}" required>
@@ -58,6 +71,6 @@
             @endforeach
 
         </div>
-        <button type="submit" class="btn btn-primary">Crea Bici</button>
+        <button type="submit" class="btn btn-primary">Modifica Bici</button>
     </form>
 @endsection

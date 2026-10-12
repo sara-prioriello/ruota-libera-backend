@@ -9,6 +9,7 @@ use App\Models\Brand;
 use App\Models\Feature;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Storage;
 
 class BikeController extends Controller
 {
@@ -50,10 +51,14 @@ class BikeController extends Controller
         $newBike->category_id = $data['category_id'];
         $newBike->brand_id = $data['brand_id'];
 
-        if ($request->hasFile('image')) {
-            $path = $request->file('image')->store('uploads', 'public');
-            $newBike->image = $path;
-        }
+      
+
+         //faccio un controllo sull'immagine
+            if(array_key_exists("image",$data)) {
+                // carica l'immagine nello storage 
+                $img_url = Storage::putFile("bikes", $data['image']);
+                $newBike->image = $img_url;
+            }
 
         //salviamo la nuova bici
         $newBike->save();
@@ -101,15 +106,16 @@ class BikeController extends Controller
         $bike->category_id = $data['category_id'];
         $bike->brand_id = $data['brand_id'];
 
-        if ($request->hasFile('image')) {
+        if(array_key_exists("image",$data)) {
             // Elimina l'immagine precedente se esiste
             if ($bike->image) {
                 Storage::disk('public')->delete($bike->image);
             }
-            // Salva la nuova immagine
-            $path = $request->file('image')->store('uploads', 'public');
-            $bike->image = $path;
+             // carica l'immagine nello storage 
+            $img_url = Storage::putFile("bikes", $data['image']);
+            $bike->image = $img_url;
         }
+
 
         //salviamo la bici aggiornata
         $bike->save();
@@ -130,6 +136,9 @@ class BikeController extends Controller
      */
     public function destroy(Bike $bike)
     {
+        if($bike->image){
+            Storage::delete($bike->image);
+        }
         $bike->delete();
         return redirect()->route('admin.bikes.index')->with('message', 'Bici eliminata con successo');
     }

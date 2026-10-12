@@ -1,8 +1,13 @@
-@extends('layouts.app');
+@extends('layouts.app')
 @section('content')
     <h1>Crea una nuova bici</h1>
-    <form action="{{ route('admin.bikes.store') }}" method='POST' >
+    <form action="{{ route('admin.bikes.store') }}" method='POST' enctype="multipart/form-data">
         @csrf
+        <div class="mb-3">
+            <label for="image" class="form-label">Immagine</label>
+            <input type="file" class="form-control" id="image" name="image">
+
+        </div>
         <div class="mb-3">
             <label for="name" class="form-label">Nome</label>
             <input type="text" class="form-control" id="name" name="name" required>
