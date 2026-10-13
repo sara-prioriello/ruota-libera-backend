@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\BikeController;
 use App\Http\Controllers\Admin\FeatureController;
+use App\Http\Controllers\Admin\BrandController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -28,10 +29,11 @@ Route::middleware(['auth','verified'])
     Route::resource('categories', CategoryController::class);
     Route::resource('bikes', BikeController::class);
     Route::resource('features', FeatureController::class);
+    Route::resource('brands', BrandController::class);
+    
 
 });
 
 
 
 require __DIR__.'/auth.php';
-    
