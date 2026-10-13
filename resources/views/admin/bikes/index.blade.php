@@ -4,7 +4,7 @@
 <h1>Bici</h1>
 
 <a href="{{ route('admin.bikes.create') }}" class="btn btn-sm btn-primary">Crea Nuova Bici</a>
-{{-- creiamo la tabella per stampare le categorie con il loro nome, colore associato e descrizione --}}
+{{-- creiamo la tabella per stampare le bici--}}
 <table class="table" >
     <thead>
         <tr>

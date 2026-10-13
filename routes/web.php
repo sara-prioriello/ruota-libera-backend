@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\BikeController;
+use App\Http\Controllers\Admin\FeatureController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -26,9 +27,11 @@ Route::middleware(['auth','verified'])
     ->group(function (){
     Route::resource('categories', CategoryController::class);
     Route::resource('bikes', BikeController::class);
+    Route::resource('features', FeatureController::class);
 
 });
 
 
 
 require __DIR__.'/auth.php';
+    
