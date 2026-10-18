@@ -1,17 +1,10 @@
 @extends('layouts.app')
 @section('content')
     <h1>Crea un nuovo brand</h1>
-    <form action="{{ route('admin.brands.store') }}" method='POST' >
+    <form action="{{ route('admin.brands.store') }}" method='POST' enctype="multipart/form-data">
         @csrf
-        @method('PUT')
-        @if ($brand->logo)
-            <div class="mb-3">
-                <label for="current_logo" class="form-label">Logo attuale</label>
-                <div>
-                    <img src="{{ asset('storage/' . $brand->logo) }}" alt="{{ $brand->name }}" style="max-width: 200px;">
-                </div>
-            </div>
-        @endif
+       
+      
          <div class="mb-3">
             <label for="logo" class="form-label">Logo</label>
             <input type="file" class="form-control" id="logo" name="logo" >
